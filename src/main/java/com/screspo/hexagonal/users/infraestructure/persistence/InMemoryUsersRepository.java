@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository
 public class InMemoryUsersRepository implements UsersRepository {
@@ -25,6 +26,13 @@ public class InMemoryUsersRepository implements UsersRepository {
     @Override
     public void save(User user) {
         users.add(user);
+    }
+
+    @Override
+    public void delete(String id) {
+        users = users.stream()
+                .filter(user -> !user.id().equalsIgnoreCase(id))
+                .collect(Collectors.toList());
     }
 
     private List<User> init() {

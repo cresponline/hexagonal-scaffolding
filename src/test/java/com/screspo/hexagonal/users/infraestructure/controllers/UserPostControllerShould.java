@@ -16,7 +16,6 @@ import org.springframework.web.server.ResponseStatusException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 
 class UserPostControllerShould {
@@ -33,8 +32,6 @@ class UserPostControllerShould {
     @BeforeEach
     void setUp() {
         closeable = MockitoAnnotations.openMocks(this);
-        doNothing().when(userCreator).create(any(UserDTO.class));
-
     }
 
     @AfterEach
@@ -53,6 +50,5 @@ class UserPostControllerShould {
 
         assertEquals(HttpStatus.CONFLICT, exception.getStatus());
     }
-
 
 }
