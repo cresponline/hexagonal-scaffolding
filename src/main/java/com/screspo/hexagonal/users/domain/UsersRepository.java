@@ -6,4 +6,5 @@ public interface UsersRepository {
 
     List<User> searchAll();
 
+    void save(User user);
 }

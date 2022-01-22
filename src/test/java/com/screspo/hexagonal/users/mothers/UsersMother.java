@@ -1,33 +1,12 @@
-package com.screspo.hexagonal.users.infraestructure.persistence;
+package com.screspo.hexagonal.users.mothers;
 
 import com.screspo.hexagonal.users.domain.User;
-import com.screspo.hexagonal.users.domain.UsersRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Repository
-public class InMemoryUsersRepository implements UsersRepository {
-
-    List<User> users;
-
-    public InMemoryUsersRepository() {
-        this.users = init();
-    }
-
-
-    @Override
-    public List<User> searchAll() {
-        return this.users;
-    }
-
-    @Override
-    public void save(User user) {
-        users.add(user);
-    }
-
-    private List<User> init() {
+public class UsersMother {
+    public static List<User> searchAll() {
         List<User> users = new ArrayList<>();
         User user1 = new User.Builder()
                 .id("user1-id")

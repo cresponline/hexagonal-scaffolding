@@ -1,7 +1,7 @@
 package com.screspo.hexagonal.users.infraestructure.controllers;
 
 import com.screspo.hexagonal.users.application.all_users.AllUsersSearcher;
-import com.screspo.hexagonal.users.application.dtos.UsersResponse;
+import com.screspo.hexagonal.users.application.dtos.UsersDTO;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -43,7 +43,7 @@ class UsersGetControllerShould {
 
     @Test
     void usersGetController_should_response_with_HttpStatus_OK() {
-        ResponseEntity<UsersResponse> usersResponse = usersGetController.index();
+        ResponseEntity<UsersDTO> usersResponse = usersGetController.index();
         assertEquals(HttpStatus.OK, usersResponse.getStatusCode());
     }
 

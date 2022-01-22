@@ -1,7 +1,7 @@
 package com.screspo.hexagonal.users.infraestructure.controllers;
 
 import com.screspo.hexagonal.users.application.all_users.AllUsersSearcher;
-import com.screspo.hexagonal.users.application.dtos.UsersResponse;
+import com.screspo.hexagonal.users.application.dtos.UsersDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,8 +20,7 @@ public class UsersGetController {
 
 
     @GetMapping
-    public ResponseEntity<UsersResponse> index() {
+    public ResponseEntity<UsersDTO> index() {
         return ResponseEntity.ok(allUsersSearcher.search());
     }
-
 }

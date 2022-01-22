@@ -1,7 +1,7 @@
 package com.screspo.hexagonal.users.application.all_users;
 
-import com.screspo.hexagonal.users.application.dtos.UserResponse;
-import com.screspo.hexagonal.users.application.dtos.UsersResponse;
+import com.screspo.hexagonal.users.application.dtos.UserDTO;
+import com.screspo.hexagonal.users.application.dtos.UsersDTO;
 import com.screspo.hexagonal.users.domain.UsersRepository;
 import org.springframework.stereotype.Service;
 
@@ -17,10 +17,10 @@ public class AllUsersSearcher {
     }
 
 
-    public UsersResponse search() {
-        return new UsersResponse(userRepository.searchAll()
+    public UsersDTO search() {
+        return new UsersDTO(userRepository.searchAll()
                 .stream()
-                .map(UserResponse::fromAggregate)
+                .map(UserDTO::fromAggregate)
                 .collect(Collectors.toList()));
     }
 }
