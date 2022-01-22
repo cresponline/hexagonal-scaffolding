@@ -1,4 +1,4 @@
-package com.screspo.hexagonal.users.application.all_users;
+package com.screspo.hexagonal.users.application.use_cases.all_users;
 
 import com.screspo.hexagonal.users.domain.UsersRepository;
 import org.junit.jupiter.api.AfterEach;

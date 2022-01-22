@@ -1,4 +1,4 @@
-package com.screspo.hexagonal.users.application.delete;
+package com.screspo.hexagonal.users.application.use_cases.delete;
 
 import com.screspo.hexagonal.users.domain.UsersRepository;
 import org.springframework.stereotype.Service;

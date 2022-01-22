@@ -1,4 +1,4 @@
-package com.screspo.hexagonal.users.application.create;
+package com.screspo.hexagonal.users.application.use_cases.create;
 
 import com.screspo.hexagonal.users.application.dtos.UserDTO;
 import com.screspo.hexagonal.users.application.exceptions.UserAlreadyExistsException;

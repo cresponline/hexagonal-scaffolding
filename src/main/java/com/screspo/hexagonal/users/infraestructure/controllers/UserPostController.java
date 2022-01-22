@@ -1,9 +1,9 @@
 package com.screspo.hexagonal.users.infraestructure.controllers;
 
 
-import com.screspo.hexagonal.users.application.create.UserCreator;
 import com.screspo.hexagonal.users.application.dtos.UserDTO;
 import com.screspo.hexagonal.users.application.exceptions.UserAlreadyExistsException;
+import com.screspo.hexagonal.users.application.use_cases.create.UserCreator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

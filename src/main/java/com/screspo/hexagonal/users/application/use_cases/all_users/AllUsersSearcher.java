@@ -1,4 +1,4 @@
-package com.screspo.hexagonal.users.application.all_users;
+package com.screspo.hexagonal.users.application.use_cases.all_users;
 
 import com.screspo.hexagonal.users.application.dtos.UserDTO;
 import com.screspo.hexagonal.users.application.dtos.UsersDTO;
