@@ -1,7 +1,6 @@
 package com.screspo.hexagonal.users.application.delete;
 
 import com.screspo.hexagonal.users.domain.UsersRepository;
-import com.screspo.hexagonal.users.infraestructure.controllers.UserDeleteController;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
