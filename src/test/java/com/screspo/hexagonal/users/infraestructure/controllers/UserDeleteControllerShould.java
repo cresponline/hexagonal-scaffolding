@@ -40,6 +40,6 @@ class UserDeleteControllerShould {
     void return_call_user_remover() {
         ResponseEntity<Void> response = userDeleteController.index(UsersMother.searchAll().get(0).id());
         verify(userRemover).remove(anyString());
-        assertEquals(HttpStatus.NO_CONTENT, response.getStatusCode());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 }

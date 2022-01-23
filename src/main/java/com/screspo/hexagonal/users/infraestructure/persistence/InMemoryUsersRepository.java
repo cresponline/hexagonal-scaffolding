@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Repository
@@ -33,6 +34,13 @@ public class InMemoryUsersRepository implements UsersRepository {
         users = users.stream()
                 .filter(user -> !user.id().equalsIgnoreCase(id))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Optional<User> search(String id) {
+        return users.stream()
+                .filter(user -> user.id().equalsIgnoreCase(id))
+                .findFirst();
     }
 
     private List<User> init() {

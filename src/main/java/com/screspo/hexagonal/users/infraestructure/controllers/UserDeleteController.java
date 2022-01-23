@@ -21,7 +21,7 @@ public class UserDeleteController {
     @DeleteMapping
     public ResponseEntity<Void> index(@PathVariable String id) {
         userRemover.remove(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 }
