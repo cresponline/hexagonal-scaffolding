@@ -4,6 +4,7 @@ package com.screspo.hexagonal.users.infraestructure.controllers;
 import com.screspo.hexagonal.users.application.dtos.UserDTO;
 import com.screspo.hexagonal.users.application.exceptions.UserAlreadyExistsException;
 import com.screspo.hexagonal.users.application.use_cases.create.UserCreator;
+import com.screspo.hexagonal.users.infraestructure.controllers.users.UserPostController;
 import com.screspo.hexagonal.users.mothers.UserDTOMother;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -32,7 +32,7 @@ class AllUsersSearcherShould {
     }
 
     @Test
-    void search_should_call_UserRepository_searchAll() {
+    void call_user_repository_searchAll() {
         allUsersSearcher.search();
         verify(usersRepository).searchAll();
     }

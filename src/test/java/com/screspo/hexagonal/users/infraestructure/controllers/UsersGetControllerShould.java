@@ -2,6 +2,7 @@ package com.screspo.hexagonal.users.infraestructure.controllers;
 
 import com.screspo.hexagonal.users.application.use_cases.all_users.AllUsersSearcher;
 import com.screspo.hexagonal.users.application.dtos.UsersDTO;
+import com.screspo.hexagonal.users.infraestructure.controllers.users.UsersGetController;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,13 +37,13 @@ class UsersGetControllerShould {
     }
 
     @Test
-    void usersGetController_should_call_allUsersSearcher() {
+    void call_all_users_searcher() {
         usersGetController.index();
         verify(allUsersSearcher).search();
     }
 
     @Test
-    void usersGetController_should_response_with_HttpStatus_OK() {
+    void response_with_http_status_ok() {
         ResponseEntity<UsersDTO> usersResponse = usersGetController.index();
         assertEquals(HttpStatus.OK, usersResponse.getStatusCode());
     }

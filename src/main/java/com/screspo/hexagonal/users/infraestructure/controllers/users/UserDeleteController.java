@@ -1,4 +1,4 @@
-package com.screspo.hexagonal.users.infraestructure.controllers;
+package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
 import com.screspo.hexagonal.users.application.use_cases.delete.UserRemover;
 import org.springframework.http.HttpStatus;

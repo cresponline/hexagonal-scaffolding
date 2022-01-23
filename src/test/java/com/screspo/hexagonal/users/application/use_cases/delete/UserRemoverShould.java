@@ -12,6 +12,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 
 class UserRemoverShould {
+
     @InjectMocks
     private static UserRemover userRemover;
 

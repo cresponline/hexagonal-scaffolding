@@ -26,6 +26,9 @@ public class InMemoryUsersRepository implements UsersRepository {
 
     @Override
     public void save(User user) {
+        users = users.stream()
+                .filter(u -> !user.id().equalsIgnoreCase(u.id()))
+                .collect(Collectors.toList());
         users.add(user);
     }
 

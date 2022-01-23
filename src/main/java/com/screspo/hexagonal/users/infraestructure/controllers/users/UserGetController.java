@@ -1,4 +1,4 @@
-package com.screspo.hexagonal.users.infraestructure.controllers;
+package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
 import com.screspo.hexagonal.users.application.dtos.UserDTO;
 import com.screspo.hexagonal.users.application.exceptions.UserNotFoundException;

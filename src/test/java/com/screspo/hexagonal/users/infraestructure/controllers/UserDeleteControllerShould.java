@@ -1,6 +1,7 @@
 package com.screspo.hexagonal.users.infraestructure.controllers;
 
 import com.screspo.hexagonal.users.application.use_cases.delete.UserRemover;
+import com.screspo.hexagonal.users.infraestructure.controllers.users.UserDeleteController;
 import com.screspo.hexagonal.users.mothers.UsersMother;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
