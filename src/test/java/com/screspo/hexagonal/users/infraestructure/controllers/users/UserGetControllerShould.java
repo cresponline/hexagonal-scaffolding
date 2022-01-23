@@ -1,8 +1,7 @@
-package com.screspo.hexagonal.users.infraestructure.controllers;
+package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
 import com.screspo.hexagonal.users.application.exceptions.UserNotFoundException;
 import com.screspo.hexagonal.users.application.use_cases.find_user.UserSearcher;
-import com.screspo.hexagonal.users.infraestructure.controllers.users.UserGetController;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,8 +11,8 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.doThrow;
 

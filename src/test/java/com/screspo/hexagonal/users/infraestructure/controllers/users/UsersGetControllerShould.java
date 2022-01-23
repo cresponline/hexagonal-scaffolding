@@ -1,8 +1,7 @@
-package com.screspo.hexagonal.users.infraestructure.controllers;
+package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
-import com.screspo.hexagonal.users.application.use_cases.all_users.AllUsersSearcher;
 import com.screspo.hexagonal.users.application.dtos.UsersDTO;
-import com.screspo.hexagonal.users.infraestructure.controllers.users.UsersGetController;
+import com.screspo.hexagonal.users.application.use_cases.all_users.AllUsersSearcher;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

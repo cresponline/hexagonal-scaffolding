@@ -1,12 +1,9 @@
 package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
 import com.screspo.hexagonal.users.application.dtos.UserDTO;
-import com.screspo.hexagonal.users.application.exceptions.UserNotFoundException;
 import com.screspo.hexagonal.users.application.use_cases.update_user.UserEditor;
 import com.screspo.hexagonal.users.mothers.UserDTOMother;
-import com.screspo.hexagonal.users.mothers.UsersMother;
 import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -20,7 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
-import static org.mockito.Mockito.doThrow;
 
 
 class UserPutControllerShould {

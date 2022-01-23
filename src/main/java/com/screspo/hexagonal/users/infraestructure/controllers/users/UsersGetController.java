@@ -1,7 +1,7 @@
 package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
-import com.screspo.hexagonal.users.application.use_cases.all_users.AllUsersSearcher;
 import com.screspo.hexagonal.users.application.dtos.UsersDTO;
+import com.screspo.hexagonal.users.application.use_cases.all_users.AllUsersSearcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

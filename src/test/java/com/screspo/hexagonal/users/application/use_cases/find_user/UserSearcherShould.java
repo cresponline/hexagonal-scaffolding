@@ -25,11 +25,8 @@ class UserSearcherShould {
 
     @Mock
     private static UsersRepository usersRepository;
-
-    private AutoCloseable closeable;
-
     private final User user = UsersMother.searchAll().get(0);
-
+    private AutoCloseable closeable;
 
     @BeforeEach
     void setUp() {

@@ -18,9 +18,11 @@ public class UserEditor {
 
     public void edit(UserDTO userDTO) {
         usersRepository.search(userDTO.id())
-                    .map(user -> userFromDto(userDTO))
-                    .ifPresentOrElse(usersRepository::save,
-                            () -> { throw new UserNotFoundException(); });
+                .map(user -> userFromDto(userDTO))
+                .ifPresentOrElse(usersRepository::save,
+                        () -> {
+                            throw new UserNotFoundException();
+                        });
     }
 
     private User userFromDto(UserDTO userDTO) {
