@@ -37,7 +37,6 @@ class UserEditorShould {
         closeable.close();
     }
 
-
     @Test
     void throw_user_not_found_exception() {
         when(usersRepository.search(anyString())).thenReturn(Optional.empty());

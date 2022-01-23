@@ -23,6 +23,7 @@ public class UserEditor {
                         () -> {
                             throw new UserNotFoundException();
                         });
+
     }
 
     private User userFromDto(UserDTO userDTO) {

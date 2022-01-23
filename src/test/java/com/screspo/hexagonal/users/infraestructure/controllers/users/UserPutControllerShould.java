@@ -15,7 +15,6 @@ import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.doNothing;
 
 
@@ -27,8 +26,8 @@ class UserPutControllerShould {
     @Mock
     private static UserEditor userEditor;
 
+    private final UserDTO userDTO = UserDTOMother.random();
     private AutoCloseable closeable;
-
 
     @BeforeEach
     void setUp() {
@@ -44,15 +43,16 @@ class UserPutControllerShould {
     @Test
     void throw_a_response_status_exception_with_http_status_conflict() {
         ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,
-                () -> userPutController.index(UserDTOMother.random(), "invalid-id"));
+                () -> userPutController.index(userDTO, "invalid-id"));
         assertEquals(HttpStatus.CONFLICT, responseStatusException.getStatus());
     }
 
     @Test
     void response_with_http_status_ok() {
-        doNothing().when(userEditor).edit(any(UserDTO.class));
-        ResponseEntity<Void> response = userPutController.index(UserDTOMother.random(), UserDTOMother.random().id());
+        doNothing().when(userEditor).edit(userDTO);
+        ResponseEntity<Void> response = userPutController.index(userDTO, userDTO.id());
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
+
 
 }

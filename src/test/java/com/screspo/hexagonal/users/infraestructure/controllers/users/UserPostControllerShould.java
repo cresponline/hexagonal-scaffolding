@@ -12,11 +12,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 
 class UserPostControllerShould {
@@ -26,9 +27,8 @@ class UserPostControllerShould {
 
     @Mock
     private static UserCreator userCreator;
-
+    private final UserDTO userDTO = UserDTOMother.random();
     private AutoCloseable closeable;
-
 
     @BeforeEach
     void setUp() {
@@ -40,16 +40,22 @@ class UserPostControllerShould {
         closeable.close();
     }
 
+
+    @Test
+    void response_with_created_status_code() {
+        doNothing().when(userCreator).create(userDTO);
+        ResponseEntity<Void> response = userPostController.index(userDTO);
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+    }
+
     @Test
     void throw_response_status_exception_when_user_already_exists() {
         doThrow(UserAlreadyExistsException.class)
                 .when(userCreator)
-                .create(any(UserDTO.class));
+                .create(userDTO);
 
         ResponseStatusException exception = assertThrows(ResponseStatusException.class,
-                () -> userPostController.index(UserDTOMother.random()));
-
+                () -> userPostController.index(userDTO));
         assertEquals(HttpStatus.CONFLICT, exception.getStatus());
     }
-
 }
