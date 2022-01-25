@@ -1,7 +1,7 @@
 package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
-import com.screspo.hexagonal.users.application.dtos.UsersDTO;
-import com.screspo.hexagonal.users.application.use_cases.all_users.AllUsersSearcher;
+import com.screspo.hexagonal.users.application.use_cases.delete.UserRemover;
+import com.screspo.hexagonal.users.mothers.UsersMother;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,15 +12,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
 
-class UsersGetControllerShould {
+class UserDeleteControllerTest {
 
     @InjectMocks
-    private static UsersGetController usersGetController;
+    private static UserDeleteController userDeleteController;
 
     @Mock
-    private static AllUsersSearcher allUsersSearcher;
+    private static UserRemover userRemover;
 
     private AutoCloseable closeable;
 
@@ -36,15 +37,9 @@ class UsersGetControllerShould {
     }
 
     @Test
-    void call_all_users_searcher() {
-        usersGetController.index();
-        verify(allUsersSearcher).search();
+    void shouldRespondsWithOkStatusCode() {
+        ResponseEntity<Void> response = userDeleteController.index(UsersMother.searchAll().get(0).id());
+        verify(userRemover).remove(anyString());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
     }
-
-    @Test
-    void response_with_http_status_ok() {
-        ResponseEntity<UsersDTO> usersResponse = usersGetController.index();
-        assertEquals(HttpStatus.OK, usersResponse.getStatusCode());
-    }
-
 }

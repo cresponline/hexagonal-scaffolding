@@ -18,7 +18,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-class UserCreatorShould {
+class UserCreatorTest {
 
     @InjectMocks
     private static UserCreator userCreator;
@@ -42,13 +42,13 @@ class UserCreatorShould {
 
 
     @Test
-    void call_user_repository_search_all() {
+    void shouldCallUserRepositorySave() {
         userCreator.create(UserDTOMother.random());
         verify(usersRepository).save(any(User.class));
     }
 
     @Test
-    void throw_an_user_already_exists_exception() {
+    void mustThrowAnUserAlreadyExistsException() {
         UserDTO existingUser = UserDTOMother.createFromUser(UsersMother.searchAll().get(0));
         assertThrows(UserAlreadyExistsException.class,
                 () -> userCreator.create(existingUser));

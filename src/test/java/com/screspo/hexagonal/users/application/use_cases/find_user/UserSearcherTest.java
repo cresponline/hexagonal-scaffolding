@@ -1,5 +1,6 @@
-package com.screspo.hexagonal.users.application.use_cases.delete;
+package com.screspo.hexagonal.users.application.use_cases.find_user;
 
+import com.screspo.hexagonal.users.application.exceptions.UserNotFoundException;
 import com.screspo.hexagonal.users.domain.UsersRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -8,19 +9,22 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-class UserRemoverShould {
+class UserSearcherTest {
 
     @InjectMocks
-    private static UserRemover userRemover;
+    private static UserSearcher userSearcher;
 
     @Mock
     private static UsersRepository usersRepository;
 
     private AutoCloseable closeable;
-
 
     @BeforeEach
     void setUp() {
@@ -32,10 +36,13 @@ class UserRemoverShould {
         closeable.close();
     }
 
+
     @Test
-    void call_user_repository_delete() {
-        userRemover.remove("id");
-        verify(usersRepository).delete(anyString());
+    void searchMustThrowAnUserNotFoundException() {
+        when(usersRepository.search(anyString())).thenReturn(Optional.empty());
+        assertThrows(UserNotFoundException.class,
+                () -> userSearcher.search("random-id"));
+        verify(usersRepository).search(anyString());
     }
 
 }

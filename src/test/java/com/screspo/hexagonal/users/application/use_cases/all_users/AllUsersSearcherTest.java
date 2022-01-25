@@ -10,7 +10,7 @@ import org.mockito.MockitoAnnotations;
 
 import static org.mockito.Mockito.verify;
 
-class AllUsersSearcherShould {
+class AllUsersSearcherTest {
 
     @InjectMocks
     private static AllUsersSearcher allUsersSearcher;
@@ -32,7 +32,7 @@ class AllUsersSearcherShould {
     }
 
     @Test
-    void call_user_repository_searchAll() {
+    void shouldCallUserRepositorySearchAll() {
         allUsersSearcher.search();
         verify(usersRepository).searchAll();
     }

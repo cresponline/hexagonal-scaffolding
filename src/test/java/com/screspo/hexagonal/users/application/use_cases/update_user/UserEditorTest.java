@@ -1,5 +1,6 @@
 package com.screspo.hexagonal.users.application.use_cases.update_user;
 
+import com.screspo.hexagonal.users.application.dtos.UserDTO;
 import com.screspo.hexagonal.users.application.exceptions.UserNotFoundException;
 import com.screspo.hexagonal.users.domain.UsersRepository;
 import com.screspo.hexagonal.users.mothers.UserDTOMother;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-class UserEditorShould {
+class UserEditorTest {
 
     @InjectMocks
     private static UserEditor userEditor;
@@ -24,8 +25,9 @@ class UserEditorShould {
     @Mock
     private static UsersRepository usersRepository;
 
-    private AutoCloseable closeable;
+    final UserDTO userDTO = UserDTOMother.random();
 
+    private AutoCloseable closeable;
 
     @BeforeEach
     void setUp() {
@@ -38,9 +40,9 @@ class UserEditorShould {
     }
 
     @Test
-    void throw_user_not_found_exception() {
+    void mustThrowAnUserNotFoundException() {
         when(usersRepository.search(anyString())).thenReturn(Optional.empty());
         assertThrows(UserNotFoundException.class,
-                () -> userEditor.edit(UserDTOMother.random()));
+                () -> userEditor.edit(userDTO));
     }
 }

@@ -20,15 +20,17 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.doThrow;
 
-class UserPostControllerShould {
+class UserPostControllerTest {
 
     @InjectMocks
     private static UserPostController userPostController;
 
     @Mock
     private static UserCreator userCreator;
-    private final UserDTO userDTO = UserDTOMother.random();
+
     private AutoCloseable closeable;
+
+    private final UserDTO userDTO = UserDTOMother.random();
 
     @BeforeEach
     void setUp() {
@@ -42,14 +44,14 @@ class UserPostControllerShould {
 
 
     @Test
-    void response_with_created_status_code() {
+    void shouldRespondsWithCreatedStatusCode() {
         doNothing().when(userCreator).create(userDTO);
         ResponseEntity<Void> response = userPostController.index(userDTO);
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
-    void throw_response_status_exception_when_user_already_exists() {
+    void mustThrowResponseStatusExceptionWhenUserAlreadyExists() {
         doThrow(UserAlreadyExistsException.class)
                 .when(userCreator)
                 .create(userDTO);

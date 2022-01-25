@@ -1,6 +1,7 @@
 package com.screspo.hexagonal.users.infraestructure.controllers.users;
 
 import com.screspo.hexagonal.users.application.dtos.UserDTO;
+import com.screspo.hexagonal.users.application.exceptions.UserNotFoundException;
 import com.screspo.hexagonal.users.application.use_cases.update_user.UserEditor;
 import com.screspo.hexagonal.users.mothers.UserDTOMother;
 import org.junit.jupiter.api.AfterEach;
@@ -16,9 +17,10 @@ import org.springframework.web.server.ResponseStatusException;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 
 
-class UserPutControllerShould {
+class UserPutControllerTest {
 
     @InjectMocks
     private static UserPutController userPutController;
@@ -41,17 +43,25 @@ class UserPutControllerShould {
 
 
     @Test
-    void throw_a_response_status_exception_with_http_status_conflict() {
-        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,
-                () -> userPutController.index(userDTO, "invalid-id"));
-        assertEquals(HttpStatus.CONFLICT, responseStatusException.getStatus());
-    }
-
-    @Test
-    void response_with_http_status_ok() {
+    void shouldRespondsWithOkHttpStatusCode() {
         doNothing().when(userEditor).edit(userDTO);
         ResponseEntity<Void> response = userPutController.index(userDTO, userDTO.id());
         assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    void mustThrowResponseStatusExceptionWithNoContentHttpStatusCode() {
+        doThrow(UserNotFoundException.class).when(userEditor).edit(userDTO);
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,
+                () -> userPutController.index(userDTO, userDTO.id()));
+        assertEquals(HttpStatus.NO_CONTENT, responseStatusException.getStatus());
+    }
+
+    @Test
+    void mustThrowResponseStatusExceptionWithConflictHttpStatusCode() {
+        ResponseStatusException responseStatusException = assertThrows(ResponseStatusException.class,
+                () -> userPutController.index(userDTO, "invalid-id"));
+        assertEquals(HttpStatus.CONFLICT, responseStatusException.getStatus());
     }
 
 
